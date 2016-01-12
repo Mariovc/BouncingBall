@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">BouncingBall</string>
+    <string name="action_settings">Settings</string>
+    <string name="Enviar">Enviar</string>
+    <string name="ActivarBluetooth">Activar bluetooth</string>
+    <string name="DesactivarBluetooth">Desactivar bluetooth</string>
+    <string name="Confirmar">Confirmar</string>
+    <string name="Cancelar">Cancelar</string>
+    <string name="Salir">Salir</string>
+
+    <!-- Mensajes -->
+    <string name="SinConexion">Conexión actual: SIN CONEXIÓN</string>
+    <string name="ConexionActual">Conexión actual:</string>
+    <string name="ConectandoA">Conectando a</string>
+    <string name="EnviandoMensaje">Enviando mensaje</string>
+    <string name="MsgErrorConexion">Error al enviar al mensaje: no hay conexiones activas</string>
+</resources>
