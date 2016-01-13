@@ -20,8 +20,23 @@ class BouncingBallView extends SurfaceView implements SurfaceHolder.Callback {
     private static int ballColor = Color.RED;
     private BouncingBallAnimationThread bbThread = null;
 
+
+    public BouncingBallView(Context context) {
+        super(context);
+        build();
+    }
+
+    public BouncingBallView(Context context, AttributeSet attributeSet) {
+        super(context, attributeSet);
+        build();
+    }
+
     public BouncingBallView(Context ctx, AttributeSet attrs, int defStyle) {
         super(ctx, attrs, defStyle);
+        build();
+    }
+
+    private void build() {
         getHolder().addCallback(this);
     }
 
@@ -99,5 +114,57 @@ class BouncingBallView extends SurfaceView implements SurfaceHolder.Callback {
                 }
             }
         }
+    }
+
+
+    /**
+     * Getters and setters
+     */
+    public int getxPosition() {
+        return xPosition;
+    }
+
+    public void setxPosition(int xPosition) {
+        this.xPosition = xPosition;
+    }
+
+    public int getyPosition() {
+        return yPosition;
+    }
+
+    public void setyPosition(int yPosition) {
+        this.yPosition = yPosition;
+    }
+
+    public int getxDirection() {
+        return xDirection;
+    }
+
+    public void setxDirection(int xDirection) {
+        this.xDirection = xDirection;
+    }
+
+    public int getyDirection() {
+        return yDirection;
+    }
+
+    public void setyDirection(int yDirection) {
+        this.yDirection = yDirection;
+    }
+
+    public static int getRadius() {
+        return radius;
+    }
+
+    public static void setRadius(int radius) {
+        BouncingBallView.radius = radius;
+    }
+
+    public static int getBallColor() {
+        return ballColor;
+    }
+
+    public static void setBallColor(int ballColor) {
+        BouncingBallView.ballColor = ballColor;
     }
 }

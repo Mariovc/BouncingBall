@@ -8,6 +8,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -18,6 +19,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Random;
 
 public class ServidorBT extends Activity implements View.OnClickListener {
 
@@ -33,6 +36,7 @@ public class ServidorBT extends Activity implements View.OnClickListener {
     private EditText txtMensaje;
     private TextView tvMensaje;
     private TextView tvConexion;
+    private BouncingBallView bouncingBallView;
     private BluetoothAdapter bAdapter;   //Adapter para uso del Bluetooth
     private ServServidorBT servicio;  //Servicio de mensajes de Bluetooth
     private BluetoothDevice ultimoDispositivo;
@@ -70,6 +74,7 @@ public class ServidorBT extends Activity implements View.OnClickListener {
         txtMensaje = (EditText) findViewById(R.id.txtMensaje);
         tvMensaje = (TextView) findViewById(R.id.tvMensaje);
         tvConexion = (TextView) findViewById(R.id.tvConexion);
+        bouncingBallView = (BouncingBallView) findViewById(R.id.bouncing_ball_view);
     }
 
     private void configurarAdaptadorBluetooth() {
@@ -230,6 +235,7 @@ public class ServidorBT extends Activity implements View.OnClickListener {
         super.onPause();
     }
 
+    @SuppressWarnings("HandlerLeak")
     private final Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -242,6 +248,11 @@ public class ServidorBT extends Activity implements View.OnClickListener {
                     buffer = (byte[]) msg.obj;
                     mensaje = new String(buffer, 0, msg.arg1);
                     tvMensaje.setText(mensaje);
+                    int number = Integer.parseInt(mensaje);
+                    float velocity = getVelocity(number);
+                    bouncingBallView.setxDirection((int) (bouncingBallView.getxDirection() * velocity));
+                    bouncingBallView.setyDirection((int) (bouncingBallView.getyDirection() * velocity));
+                    BouncingBallView.setBallColor(getBallColor(number));
                     break;
                 }
                 // Mensaje de escritura: se mostrara en el Toast
@@ -296,5 +307,18 @@ public class ServidorBT extends Activity implements View.OnClickListener {
             }
         }
     }; // Fin Handler
+
+    private float getVelocity(int number) {
+        float newVelocity = (float) number / 4.5f;
+        return newVelocity;
+    }
+
+    private int getBallColor(int number) {
+        Random rnd = new Random();
+        int red = 256 / number;
+        int green = rnd.nextInt(256);
+        int blue = rnd.nextInt(256);
+        return Color.rgb(red, green, blue);
+    }
 }
 

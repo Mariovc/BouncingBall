@@ -11,20 +11,22 @@
     tools:context=".ServidorBT">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2">
+        android:layout_height="wrap_content">
         <Button
             android:id="@+id/btnBluetooth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:text="" />
+            android:layout_centerHorizontal="true" />
     </RelativeLayout>
     <TextView
         android:id="@+id/tvMensaje"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <com.example.bouncingball.BouncingBallView
+        android:id="@+id/bouncing_ball_view"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="2" />
+        android:layout_weight="2"/>
     <TextView
         android:id="@+id/tvConexion"
         android:layout_width="match_parent"
@@ -32,7 +34,8 @@
         android:text="@string/SinConexion" />
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:visibility="gone">
         <Button
             android:id="@+id/btnEnviar"
             android:layout_width="wrap_content"
