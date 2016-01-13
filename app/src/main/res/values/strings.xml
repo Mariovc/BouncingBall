@@ -7,6 +7,9 @@
     <string name="Confirmar">Confirmar</string>
     <string name="Cancelar">Cancelar</string>
     <string name="Salir">Salir</string>
+    <string name="BuscarDispositivo">Buscar</string>
+    <string name="Conectar">Conectar</string>
+    <string name="MostrarEnlazados">Enlazados</string>
 
     <!-- Mensajes -->
     <string name="SinConexion">Conexión actual: SIN CONEXIÓN</string>
@@ -14,4 +17,9 @@
     <string name="ConectandoA">Conectando a</string>
     <string name="EnviandoMensaje">Enviando mensaje</string>
     <string name="MsgErrorConexion">Error al enviar al mensaje: no hay conexiones activas</string>
+    <string name="IniciandoDescubrimiento">Iniciando búsqueda de dispositivos bluetooth&#8230;</string>
+    <string name="ErrorIniciandoDescubrimiento">Error al iniciar búsqueda de dispositivos bluetooth</string>
+    <string name="DetectadoDispositivo">Detectado dispositivo</string>
+    <string name="FinBusqueda">Fin de la búsqueda</string>
+    <string name="MsgConfirmarConexion">¿Conectar al dispositivo</string>
 </resources>
