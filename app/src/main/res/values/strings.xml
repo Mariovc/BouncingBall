@@ -20,6 +20,7 @@
     <string name="IniciandoDescubrimiento">Iniciando búsqueda de dispositivos bluetooth&#8230;</string>
     <string name="ErrorIniciandoDescubrimiento">Error al iniciar búsqueda de dispositivos bluetooth</string>
     <string name="DetectadoDispositivo">Detectado dispositivo</string>
-    <string name="FinBusqueda">Fin de la búsqueda</string>
+    <string name="FinBusqueda">No se ha podidido encontrar el dispositivo SERVIDOR</string>
     <string name="MsgConfirmarConexion">¿Conectar al dispositivo</string>
+    <string name="title_activity_main">MainActivity</string>
 </resources>

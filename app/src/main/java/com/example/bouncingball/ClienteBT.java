@@ -47,6 +47,7 @@ public class ClienteBT extends Activity implements View.OnClickListener {
     private ArrayAdapter arrayAdaptador;
     private ServClienteBT servicio;
     private BluetoothDevice ultimoDispositivo;
+    private boolean servidorEncontrado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -162,10 +163,18 @@ public class ClienteBT extends Activity implements View.OnClickListener {
                 arrayDisp.add(dispositivo);
                 String descripcionDispositivo = dispositivo.getName() + " [" +
                         dispositivo.getAddress() + "]";
-                Toast.makeText(getBaseContext(), getString(R.string.DetectadoDispositivo)
-                        + ": " + descripcionDispositivo, Toast.LENGTH_SHORT).show();
                 Log.v(TAG, "ACTION_FOUND: Dispositivo encontrado: " +
                         descripcionDispositivo);
+                if ("SERVIDOR".equalsIgnoreCase(dispositivo.getName())) {
+                    servidorEncontrado = true;
+                    Toast.makeText(getBaseContext(), getString(R.string.DetectadoDispositivo)
+                            + ": " + descripcionDispositivo, Toast.LENGTH_SHORT).show();
+                    AlertDialog dialog = crearDialogoConexion(getString(R.string.Conectar),
+                            getString(R.string.MsgConfirmarConexion) + " " +
+                                    dispositivo.getName() + "?",
+                            dispositivo.getAddress());
+                    dialog.show();
+                }
             }
             // BluetoothAdapter.ACTION_DISCOVERY_FINISHED
             // Codigo que se ejecutara cuando el Bluetooth finalice la
@@ -175,8 +184,10 @@ public class ClienteBT extends Activity implements View.OnClickListener {
                 arrayAdaptador = new ArrayAdapterBT(getBaseContext(),
                         android.R.layout.simple_list_item_2, arrayDisp);
                 lvDispositivos.setAdapter(arrayAdaptador);
-                Toast.makeText(getBaseContext(), R.string.FinBusqueda,
-                        Toast.LENGTH_SHORT).show();
+                if (!servidorEncontrado) {
+                    Toast.makeText(getBaseContext(), R.string.FinBusqueda,
+                            Toast.LENGTH_LONG).show();
+                }
             }
         } // Fin onReceive
     }; // Fin BroadcastReceiver
@@ -222,6 +233,7 @@ public class ClienteBT extends Activity implements View.OnClickListener {
             // Codigo ejecutado al pulsar el Button que se va a encargar de
             // descubrir nuevos dispositivos
             case R.id.btnBuscarDispositivo: {
+                servidorEncontrado = false;
                 arrayDisp.clear();
                 // Comprobamos si existe un descubrimiento en curso. En caso
                 // afirmativo, se cancela.
@@ -336,6 +348,7 @@ public class ClienteBT extends Activity implements View.OnClickListener {
         }
     }
 
+    @SuppressWarnings("HandlerLeak")
     private final Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
